@@ -59,7 +59,7 @@
 (defun load-particle (particle-filename)
   (load-file (concat emacs-config-dir particle-filename)))
 
-(load-particle "keyboard-config.el")
+(load-particle "keybinding-config.el")
 (load-particle "as-config.el")
 (load-particle "clipboard-config.el")
 (load-particle "comment-style-config.el")
