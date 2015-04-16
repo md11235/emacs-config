@@ -1,0 +1,3 @@
+[submodule "shared/site-lisp/slime"]
+	path = shared/site-lisp/slime
+	url = git://github.com/slime/slime.git
