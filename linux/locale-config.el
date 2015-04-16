@@ -1,0 +1,20 @@
+;; Chinese font support
+;; (set-keyboard-coding-system 'cn-gb-2312)
+;; (set-selection-coding-system 'cn-gb-2312)
+;; (set-terminal-coding-system  'cn-gb-2312)
+;; (set-buffer-file-coding-system 'gb2312)
+;; (setq default-buffer-file-coding-system 'gb2312)
+;; (setq locale-coding-system 'gb2312)
+;; (set-language-environment-coding-systems "chinese-gb"  nil)
+(set-keyboard-coding-system 'utf-8-unix)
+(set-selection-coding-system 'utf-8-unix)
+(set-terminal-coding-system  'utf-8-unix)
+(set-buffer-file-coding-system 'utf-8-unix)
+(set-file-name-coding-system 'utf-8-unix)
+(setq-default buffer-file-coding-system 'utf-8-unix)
+(setq locale-coding-system 'utf-8-unix)
+;;(set-language-environment-coding-systems "utf-8"  nil)
+;;(set-language-environment "UTF-8"  nil)
+;;(setq x-select-request-type
+;;      '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
