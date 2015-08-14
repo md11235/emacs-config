@@ -1,10 +1,19 @@
+(setq emacs-config-dir (file-name-directory load-file-name))
+
+;;(setq initial-major-mode 'lisp-interaction-mode)
+
 ;;-----------------------------------load directories
-(let* ((dir (expand-file-name "~/site-lisp"))
-       (default-directory dir))
-  (when (file-directory-p dir)
-    (add-to-list 'load-path dir)
-    (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-        (normal-top-level-add-subdirs-to-load-path))))
+
+(defun add-non-system-site-lisp (site-lisp-path)
+  (let* ((dir (expand-file-name site-lisp-path)))
+    (when (file-directory-p dir)
+      (add-to-list 'load-path dir)
+      (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+          (normal-top-level-add-subdirs-to-load-path)))))
+
+(add-non-system-site-lisp (concat emacs-config-dir "site-lisp"))
+(add-non-system-site-lisp (concat emacs-config-dir "../shared/site-lisp/"))
+(add-non-system-site-lisp (concat emacs-config-dir "../shared/elpa/"))
 
 ;; (require 'yasnippet)
 ;; (yas/initialize)
@@ -1520,12 +1529,6 @@ BEG and END (region to sort)."
 ;; (require 'clojure-mode)
 
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-
-
-
-(require 'auto-complete)
-(require 'auto-complete-clang)
-
 
 (add-hook 'isearch-mode-end-hook 'my-goto-match-beginning)
 (defun my-goto-match-beginning ()
