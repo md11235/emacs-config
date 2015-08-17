@@ -112,5 +112,5 @@
 (load-particle "misc-require-config.el")
 (load-particle "python-mode-config.el")
 (load-particle "lisp-mode-config.el")
+(load-particle "clojure-config.el")
 (load-particle "color-theme-config.el")
-
