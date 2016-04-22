@@ -114,3 +114,9 @@
 (load-particle "lisp-mode-config.el")
 (load-particle "color-theme-config.el")
 
+
+(setq url-proxy-services
+      '(("http" .  "192.168.1.102:1080")
+        ("https" . "192.168.1.102:1080")))
+
+(setenv "http_proxy" "http://192.168.1.102:1080")
