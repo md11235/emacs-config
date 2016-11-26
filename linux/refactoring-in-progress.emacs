@@ -34,6 +34,10 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
 
+;;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;;(add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
+;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 ;; (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 
 
@@ -72,7 +76,7 @@
 (load-particle "desktop-config.el")
 (load-particle "dired-config.el")
 (load-particle "emacs-customization.el")
-;;(load-particle "emms-config.el")
+;; (load-particle "emms-config.el")
 (load-particle "fold-config.el")
 (load-particle "font-config.el")
 (load-particle "gtags-config.el")
