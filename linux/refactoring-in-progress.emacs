@@ -29,6 +29,11 @@
 (setq-default package-user-dir (concat emacs-config-dir "../shared/elpa/"))
 ;; "d:\\Kanbox\\badb01@me.com\\emacs-config\\shared\\elpa"
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
+
 ;; (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 
 
@@ -67,7 +72,7 @@
 (load-particle "desktop-config.el")
 (load-particle "dired-config.el")
 (load-particle "emacs-customization.el")
-(load-particle "emms-config.el")
+;;(load-particle "emms-config.el")
 (load-particle "fold-config.el")
 (load-particle "font-config.el")
 (load-particle "gtags-config.el")
@@ -112,12 +117,14 @@
 (load-particle "misc-require-config.el")
 (load-particle "python-mode-config.el")
 (load-particle "lisp-mode-config.el")
-(load-particle "clojure-config.el")
+;;(load-particle "clojure-config.el")
 (load-particle "color-theme-config.el")
 
 
 (setq url-proxy-services
-      '(("http" .  "192.168.1.102:1080")
-        ("https" . "192.168.1.102:1080")))
+      '(("http" .  "10.10.200.112:1080")
+        ("https" . "10.10.200.112:1080")))
 
-(setenv "http_proxy" "http://192.168.1.102:1080")
+(setenv "http_proxy" "http://10.10.200.112:1080")
+
+(load-file (concat emacs-config-dir "emacs-custom.el"))
