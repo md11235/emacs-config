@@ -154,11 +154,13 @@
 ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; (setq url-proxy-services
-;;       '(("http" .  "192.168.199.184:1080")
-;;         ("https" . "192.168.199.184:1080")))
+;;       '(("http" .  "192.168.100.101:1080")
+;;         ("https" . "192.168.100.101:1080")))
 
-;; (setenv "http_proxy" "http://192.168.199.184:1080")
+;; (setenv "http_proxy" "http://192.168.100.101:1080")
 
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
+
+(define-coding-system-alias 'UTF-8 'utf-8)

@@ -28,17 +28,27 @@
 (package-initialize)
 (setq-default package-user-dir (concat emacs-config-dir "../shared/elpa/"))
 ;; "d:\\Kanbox\\badb01@me.com\\emacs-config\\shared\\elpa"
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
+(setq package-archives
+      '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+        ("melpa"        . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+        ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+        ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+        ("marmalade"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
 
-;;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;;(add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
-;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;; (setq package-archives
+;;       '(("marmalade" . "https://marmalade-repo.org/packages/")
+;;         ("melpa" . "https://melpa.org/packages/")
+;;         ("popkit" . "http://elpa.popkit.org/packages/")
+;;         ("gnu" . "https://elpa.gnu.org/packages/")
+;;         ;; ("org" . "http://orgmode.org/elpa/")
+;;         ))
+
 ;; (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+;; (add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
 
 
 (custom-set-variables
@@ -63,6 +73,9 @@
  '(info-title-3 ((t (:inherit variable-pitch :weight semi-bold :height 1.6))))
  '(info-title-4 ((t (:inherit variable-pitch :weight semi-bold :height 1.4))))
  '(variable-pitch ((t (:inherit default :family "Lucida Grande")))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(load-file (concat emacs-config-dir "emacs-custom.el"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun load-particle (particle-filename)
@@ -119,16 +132,13 @@
 (load-particle "version-control-config.el")
 ;; (load-particle "auto-completion-config.el")
 (load-particle "misc-require-config.el")
-(load-particle "python-mode-config.el")
 (load-particle "lisp-mode-config.el")
 ;;(load-particle "clojure-config.el")
 (load-particle "color-theme-config.el")
-
+(load-particle "python-mode-config.el")
 
 (setq url-proxy-services
-      '(("http" .  "10.10.200.112:1080")
-        ("https" . "10.10.200.112:1080")))
+      '(("http" .  "127.0.0.1:7777")
+        ("https" . "127.0.0.1:7777")))
 
-(setenv "http_proxy" "http://10.10.200.112:1080")
-
-(load-file (concat emacs-config-dir "emacs-custom.el"))
+(setenv "http_proxy" "http://127.0.0.1:7777")
