@@ -21,20 +21,26 @@
           (normal-top-level-add-subdirs-to-load-path)))))
 
 (add-non-system-site-lisp (concat emacs-config-dir "site-lisp"))
-(add-non-system-site-lisp (concat emacs-config-dir "../shared/site-lisp/"))
-(add-non-system-site-lisp (concat emacs-config-dir "../shared/elpa/"))
+(add-non-system-site-lisp (concat emacs-config-dir "../shared/site-lisp"))
+(add-non-system-site-lisp (concat emacs-config-dir "../shared/elpa"))
 
 (require 'package)
 (package-initialize)
 (setq-default package-user-dir (concat emacs-config-dir "../shared/elpa/"))
 ;; "d:\\Kanbox\\badb01@me.com\\emacs-config\\shared\\elpa"
 
-(setq package-archives
-      '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-        ("melpa"        . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-        ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
-        ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-        ("marmalade"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
+;; (setq package-archives
+;;       '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+;;         ("melpa"        . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+;;         ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+;;         ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+;;         ("marmalade"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
+
+(setq package-archives nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ;; (setq package-archives
 ;;       '(("marmalade" . "https://marmalade-repo.org/packages/")
@@ -137,8 +143,15 @@
 (load-particle "color-theme-config.el")
 (load-particle "python-mode-config.el")
 
-(setq url-proxy-services
-      '(("http" .  "127.0.0.1:7777")
-        ("https" . "127.0.0.1:7777")))
 
-(setenv "http_proxy" "http://127.0.0.1:7777")
+(setq url-proxy-services
+      '(("no_proxy" . "^\\(localhost\\|10\\.*\\|192\\.168.*\\)")
+        ("http" .  "192.168.100.3:1080")
+        ("https" . "192.168.100.3:1080")))
+
+(setenv "http_proxy" "http://192.168.100.3:1080")
+
+
+;; (setq url-proxy-services nil)
+
+;; (setenv "http_proxy" "http://192.168.100.3:1080")
