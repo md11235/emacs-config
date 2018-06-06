@@ -67,7 +67,7 @@
 (load-particle "desktop-config.el")
 (load-particle "dired-config.el")
 (load-particle "emacs-customization.el")
-(load-particle "emms-config.el")
+;; (load-particle "emms-config.el")
 (load-particle "fold-config.el")
 (load-particle "font-config.el")
 (load-particle "gtags-config.el")
