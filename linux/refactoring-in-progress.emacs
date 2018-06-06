@@ -25,22 +25,25 @@
 (add-non-system-site-lisp (concat emacs-config-dir "../shared/elpa"))
 
 (require 'package)
-(package-initialize)
+;; (package-initialize)
 (setq-default package-user-dir (concat emacs-config-dir "../shared/elpa/"))
-;; "d:\\Kanbox\\badb01@me.com\\emacs-config\\shared\\elpa"
 
-;; (setq package-archives
-;;       '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-;;         ("melpa"        . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-;;         ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
-;;         ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-;;         ("marmalade"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
-
+(setq package-load-list '((elpy t)
+                          (slime t)
+                          ))
 (setq package-archives nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(setq package-archives
+      '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+        ("melpa"        . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+        ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+        ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+        ("marmalade"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
+
+
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ;; (setq package-archives
 ;;       '(("marmalade" . "https://marmalade-repo.org/packages/")
@@ -122,7 +125,7 @@
 (load-particle "quote-config.el")
 (load-particle "risky-functions-config.el")
 (load-particle "ruby-config.el")
-(load-particle "slime-config.el")
+;; (load-particle "slime-config.el")
 (load-particle "tex-config.el")
 (load-particle "text-mode-config.el")
 (load-particle "time-config.el")
