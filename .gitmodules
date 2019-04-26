@@ -1,3 +1,6 @@
 [submodule "shared/site-lisp/slime"]
 	path = shared/site-lisp/slime
 	url = git://github.com/slime/slime.git
+[submodule "win/seognil"]
+	path = win/seognil
+	url = https://github.com/md11235/seognil.git
