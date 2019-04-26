@@ -1,0 +1,100 @@
+* 安装
+
+在 .emacs 加入这几行就行了。注意，如果你的 eim-wb.el 和 eim-py.el 不在
+~/.emacs.d/site-lisp/eim 目录下，记住修改 wb.txt 和 py.txt 中相应文件
+的位置。五笔输入法还要修改 eim-wb-history-file 和 eim-wb-user-file 的
+位置。
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp/eim")
+(autoload 'eim-use-package "eim" "Another emacs input method")
+
+(register-input-method
+ "eim-wb" "euc-cn" 'eim-use-package
+ "五笔" "汉字五笔输入法" "~/.emacs.d/site-lisp/eim/wb.txt")
+(register-input-method
+ "eim-py" "euc-cn" 'eim-use-package
+ "拼音" "汉字拼音输入法" "~/.emacs.d/site-lisp/eim/py.txt")
+
+* 其余文件内容
+
+charpy.st        用 Storable 模块保存的汉字拼音列表
+pychr.txt        原始的汉字拼音列表
+pyword2tbl.pl    用于把词组文件转换成可用的词库的 perl 程序
+sanguo.txt       一个测试文件
+
+* 如何定制一个输入法
+
+初级定制方法：
+例如，要设置按键，可以这样：
+(defun my-eim-wb-activate-function ()
+  (add-hook 'eim-active-hook 
+        (lambda ()
+          (let ((map (eim-mode-map)))
+            (define-key map "-" 'eim-previous-page)
+            (define-key map "=" 'eim-next-page)))))
+然后要这样 register-input-method：
+(register-input-method
+ "eim-wb" "euc-cn" 'eim-use-package
+ "五笔" "汉字五笔输入法" "~/.emacs.d/site-lisp/eim/wb.txt"
+ 'my-eim-wb-activate-function)
+
+或者这样：
+(add-hook 'eim-wb-load-hook
+          (lambda ()
+            (let ((map (eim-mode-map)))
+              (define-key map "-" 'eim-previous-page)
+              (define-key map "=" 'eim-next-page))))
+这样不需要再写一个函数。
+拼音输入法是类似的。
+
+高级定制方法：
+eim-use-package 可以接受两个参数，一个是 word-file，给出一个词库，一个
+是 active-function，这个 active-function 是在每次切换时都要调用的。如果
+想只在第一次启动输入法时调用一些命令，最好定义一个变量，在启动之后设置
+为 t，或者加入到 eim-load-hook 中。在调用这个命令时，eim-current-package
+可能还没有定义（第一次启动），这样，如果要修改或者使用
+eim-current-package 中的变量，就要用 eim-load-hook 或者eim-active-hook
+或者 eim-active-function。eim-load-hook 只在第一次启动输入法时调
+用，eim-active-function 和 eim-active-hook 每次都要调用。一般来说，如果
+要修改按键绑定，就加入到 eim-load-hook 中。如果要修改 eim-page-length
+这样的局部变量，使用 eim-active-function 或者 eim-active-hook。
+eim-active-function 是为有专门的 lib 的输入法设计的，这样不用在
+register-input-method 中加入一个 active-function。而 eim-active-hook
+是为用户定制设计的，这样不用专门写到一个文件中。设置
+eim-active-function 使用eim-set-active-function 函数。
+
+eim-stop-function:
+这个函数是用于决定是否停止转换。比如五笔中可以设置当 eim-current-key 大于 4
+时就停止。默认是 nil，也就是说可以无限的输入。
+
+eim-translate-function:
+当输入的字符是第一个字符（eim-current-key为空）时，如果不在
+eim-first-char 中，或者不是第一个字符，但是不在 eim-total-char 中，会
+停止转换。这时，会调用这个函数来处理最后一个输入字符。通常用这个函数来
+输入标点。
+
+eim-add-completion-function:
+通过这个函数来为当前的词条添加更多的选项。当往后翻页超出直接查找到的词
+条时，会调用这个函数，如果添加结束，返回 t，还需要再添加返回 nil。
+我写的五笔输入法用这个函数时是直接一次性加完。如果要每次添加几个的话，
+一种办法就是在 eim-current-choice 中加入一个新元素，记录这次搜索到哪个
+位置。下次从这个位置继续，直到结束，比较麻烦。而且，一次加完的速度也很
+快，就用简单的办法好了。
+
+eim-format-function:
+eim-current-choice 中的第一个元素是通常是一个字符串列表。但是也可以含
+有 list。这时需要给出一个显示的函数。比如我在五笔输入法中搜索出可能的
+单字或者输入拼音时显示五笔字根。
+这个函数要接受四个参数，分别是当前输入的字符串 eim-current-key，
+当前页数，所有页数，这一页的选项。
+
+eim-handle-function:
+这个函数是决定输入法行为的核心函数。通常要完成的任务是：
+1. 决定是否要继续转换。
+2. 设置 eim-current-choice, eim-current-pos, eim-current-str,
+   eim-guidance-str, 最后调用 eim-show 显示结果。通常如果
+   eim-current-choice 的 CAR 不为空的话，就调用 eim-format-page 显示。
+   如果为空，则设置相应的 eim-current-str 和 eim-guidance-str，调用
+   eim-show 显示。
+
+参考 eim-wb 和 eim-py 的写法。
