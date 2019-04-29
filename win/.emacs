@@ -539,14 +539,21 @@ buffer instead of replacing the text in region."
   :config
   (color-theme-initialize)
   (setq color-theme-is-global t)
-  :defer t
+  )
+
+(use-package smart-mode-line
+  :init
+  (setq sml/theme 'dark)
+  :config
+  (sml/setup)
+  (color-theme-billw)
 )
 
 ;;(color-theme-marine)
-(use-package color-theme-billc
-  :config
-  (color-theme-billw)
-  )
+;; (use-package color-theme-billc
+;;   :config
+;;   (color-theme-billw)
+;;   )
 
 
 ;; (require 'tmtheme)
@@ -704,7 +711,7 @@ buffer instead of replacing the text in region."
   )
 
 ;; (load-particle "scheme-config.el")
-(use-package scheme :defer)
+(use-package scheme)
 
 ;; (load-particle "paredit-config.el")
 (use-package paredit
@@ -730,7 +737,7 @@ buffer instead of replacing the text in region."
          ("M-]" . paredit-forward-barf-sexp)
          )
   
-  :hook ((emacs-lisp lisp inferior-lisp slime slime-repl) . (lambda () (paredit-mode +1)))
+  :hook ((emacs-lisp lisp inferior-lisp slime slime-repl) . paredit-mode)
   )
 
 (load-particle "isearch-config.el")
@@ -804,10 +811,8 @@ buffer instead of replacing the text in region."
   (setq dired-omit-files "^\\.")
   )
 
-(use-package dired-single
-  :defer t)
-(use-package dired+
-  :defer t)
+(use-package dired-single)
+(use-package dired+)
 
 ;; (load-particle "highlight-paren-config.el")
 
@@ -860,10 +865,10 @@ buffer instead of replacing the text in region."
 
 (load-particle "appearances-config.el")
 
+
 ;; (load-particle "seognil-config.el")
 
 
 (load-particle "locale-config.el")
-
 
 (setq initial-major-mode 'lisp-interaction-mode)
