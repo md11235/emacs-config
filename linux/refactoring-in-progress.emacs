@@ -24,13 +24,20 @@
 (add-non-system-site-lisp (concat emacs-config-dir "../shared/site-lisp"))
 (add-non-system-site-lisp (concat emacs-config-dir "../shared/elpa"))
 
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)                ;; if you use :diminish
+(require 'bind-key)                ;; if you use any :bind variant
+
 (require 'package)
-;; (package-initialize)
+
 (setq-default package-user-dir (concat emacs-config-dir "../shared/elpa/"))
 
-(setq package-load-list '((elpy t)
-                          (slime t)
-                          ))
+;;; !!! Be careful. set package-load-list might disable all other packages.
+;; (setq package-load-list '((elpy all)
+;;                           (slime all)
+;;                           ))
+
 (setq package-archives nil)
 (setq package-archives
       '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
@@ -38,6 +45,8 @@
         ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
         ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
         ("marmalade"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
+
+(package-initialize)
 
 
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -102,7 +111,7 @@
 (load-particle "fold-config.el")
 (load-particle "font-config.el")
 (load-particle "gtags-config.el")
-(load-particle "haskell-config.el")
+;; (load-particle "haskell-config.el")
 (load-particle "header2-config.el")
 (load-particle "highlight-line-config.el")
 (load-particle "highlight-parentheses-config.el")
@@ -120,7 +129,7 @@
 (load-particle "muse-config.el")
 (load-particle "org-config.el")
 (load-particle "paredit-config.el")
-(load-particle "php-config.el")
+;; (load-particle "php-config.el")
 (load-particle "psgml-config.el")
 (load-particle "quote-config.el")
 (load-particle "risky-functions-config.el")
@@ -146,15 +155,22 @@
 (load-particle "color-theme-config.el")
 (load-particle "python-mode-config.el")
 
+(use-package smart-mode-line
+  :init
+  (setq sml/theme 'dark)
+  :config
+  (sml/setup))
 
-(setq url-proxy-services
-      '(("no_proxy" . "^\\(localhost\\|10\\.*\\|192\\.168.*\\)")
-        ("http" .  "192.168.100.3:1080")
-        ("https" . "192.168.100.3:1080")))
 
-(setenv "http_proxy" "http://192.168.100.3:1080")
+;; (setq url-proxy-services
+;;       '(("no_proxy" . "^\\(localhost\\|10\\.*\\|192\\.168.*\\)")
+;;         ("http" .  "192.168.100.3:1080")
+;;         ("https" . "192.168.100.3:1080")))
+
+;; (setenv "http_proxy" "http://192.168.100.3:1080")
 
 
 ;; (setq url-proxy-services nil)
 
 ;; (setenv "http_proxy" "http://192.168.100.3:1080")
+ 
