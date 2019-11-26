@@ -159,6 +159,7 @@
   :init
   (setq sml/theme 'dark)
   :config
+  (setq sml/no-confirm-load-theme t)
   (sml/setup))
 
 
@@ -169,8 +170,5 @@
 
 ;; (setenv "http_proxy" "http://192.168.100.3:1080")
 
-
 ;; (setq url-proxy-services nil)
-
 ;; (setenv "http_proxy" "http://192.168.100.3:1080")
- 
