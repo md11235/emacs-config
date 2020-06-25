@@ -11,7 +11,7 @@
 (if (display-graphic-p) ;; window-system
     (color-theme-feng-shui)
   ;;(color-theme-renegade)
-  (color-theme-billc))
+  (color-theme-arjen))
 
 ;; (add-hook 'before-make-frame-hook
 ;;           (lambda (frame)
