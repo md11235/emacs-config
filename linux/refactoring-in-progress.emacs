@@ -24,11 +24,6 @@
 (add-non-system-site-lisp (concat emacs-config-dir "../shared/site-lisp"))
 (add-non-system-site-lisp (concat emacs-config-dir "../shared/elpa"))
 
-(eval-when-compile
-  (require 'use-package))
-(require 'diminish)                ;; if you use :diminish
-(require 'bind-key)                ;; if you use any :bind variant
-
 (require 'package)
 
 (setq-default package-user-dir (concat emacs-config-dir "../shared/elpa/"))
@@ -40,33 +35,43 @@
 
 (setq package-archives nil)
 (setq package-archives
-      '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-        ("melpa"        . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-        ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
-        ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-        ("marmalade"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
+      '(("gnu"          . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+        ("melpa"        . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+        ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+        ("org"          . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+        ("marmalade"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
 
 (package-initialize)
 
 
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;; (add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
 ;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ;; (setq package-archives
-;;       '(("marmalade" . "https://marmalade-repo.org/packages/")
-;;         ("melpa" . "https://melpa.org/packages/")
+;;       '(("marmalade" . "http://marmalade-repo.org/packages/")
+;;         ("melpa" . "http://melpa.org/packages/")
 ;;         ("popkit" . "http://elpa.popkit.org/packages/")
-;;         ("gnu" . "https://elpa.gnu.org/packages/")
+;;         ("gnu" . "http://elpa.gnu.org/packages/")
 ;;         ;; ("org" . "http://orgmode.org/elpa/")
 ;;         ))
 
-;; (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 ;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 ;; (add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
+
+(eval-when-compile
+  ;; (require 'bind-key)
+  (add-to-list 'load-path "/home/zhang/utility-config/emacs-config/shared/startup")
+  (require 'use-package))
+  
+;; (require 'bind-key)                ;; if you use any :bind variant
+
+;; (require 'diminish)                ;; if you use :diminish
+
 
 
 (custom-set-variables
