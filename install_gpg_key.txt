@@ -1,0 +1,1 @@
+gpg --homedir /c/Users/zhang/AppData/Roaming/.emacs.d/elpa/gnupg/ --keyserver hkp://keys.gnupg.net  --receive-keys 066DAFCB81E42C40
