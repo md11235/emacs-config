@@ -37,14 +37,15 @@
 ;; (setq package-load-list '((elpy all)
 ;;                           (slime all)
 ;;                           ))
+;; (setq package-load-list '(all))
 
 (setq package-archives nil)
 (setq package-archives
       '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
         ("melpa"        . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-        ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+        ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/stable-melpa/")
         ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-        ("marmalade"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")))
+        ("nongnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")))
 
 (package-initialize)
 
@@ -153,7 +154,8 @@
 (load-particle "lisp-mode-config.el")
 ;;(load-particle "clojure-config.el")
 (load-particle "color-theme-config.el")
-(load-particle "python-mode-config.el")
+;; (load-particle "python-mode-config.el")
+(load-particle "lsp-mode-config.el")
 
 (use-package smart-mode-line
   :init
@@ -163,10 +165,10 @@
   (sml/setup))
 
 
-;; (setq url-proxy-services
-;;       '(("no_proxy" . "^\\(localhost\\|10\\.*\\|192\\.168.*\\)")
-;;         ("http" .  "192.168.100.3:1080")
-;;         ("https" . "192.168.100.3:1080")))
+(setq url-proxy-services
+      '(("no_proxy" . "^\\(localhost\\|10\\.*\\|192\\.168.*\\)")
+        ("http" .  "10.30.12.34:8118")
+        ("https" . "10.30.12.34:8118")))
 
 ;; (setenv "http_proxy" "http://192.168.100.3:1080")
 
