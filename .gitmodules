@@ -4,3 +4,6 @@
 [submodule "win/seognil"]
 	path = win/seognil
 	url = https://github.com/md11235/seognil.git
+[submodule "replace-colorthemes"]
+	path = replace-colorthemes
+	url = https://github.com/emacs-jp/replace-colorthemes.git
