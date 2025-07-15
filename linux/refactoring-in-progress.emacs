@@ -42,8 +42,8 @@
         ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
         ("nongnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")))
 
-(package-initialize)
-
+;; (package-initialize)
+(unless (fboundp 'package-activate-all) (package-initialize))
 
 ;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
