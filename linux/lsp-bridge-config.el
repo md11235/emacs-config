@@ -1,4 +1,5 @@
-(add-to-list 'load-path "/home/chengdu/emacs-sitelisp/lsp-bridge-master")
+(add-to-list 'load-path
+             (expand-file-name "~/emacs-sitelisp/lsp-bridge"))
 
 (require 'yasnippet)
 (yas-global-mode 1)
