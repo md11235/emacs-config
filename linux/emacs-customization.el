@@ -110,7 +110,7 @@
 ;;(setq require-final-newline t)
 
 (setq track-eol t)
-(global-linum-mode 0)
+;; (global-linum-mode 0)
 (setq bookmark-save-flag 1)
 
 ;;(setq scroll-left 'disabled nil)
