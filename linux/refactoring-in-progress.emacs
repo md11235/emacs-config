@@ -36,7 +36,8 @@
 
 (setq package-archives nil)
 (setq package-archives
-      '(("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ;; ("gnu"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
         ("melpa"        . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
         ("melpa-stable" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/stable-melpa/")
         ("org"          . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
@@ -67,6 +68,7 @@
 (eval-when-compile
   ;; (require 'bind-key)
   (add-to-list 'load-path "/home/zhang/utility-config/emacs-config/shared/startup")
+  (add-to-list 'load-path "/home/zhang/utility-config/emacs-config/shared/use-pacage-2.4")
   (require 'use-package))
   
 ;; (require 'bind-key)                ;; if you use any :bind variant
@@ -167,13 +169,17 @@
   (setq sml/theme 'dark)
   :config
   (setq sml/no-confirm-load-theme t)
-  (sml/setup))
+  (sml/setup)
+  (setq sml/override-theme t))
 
+(use-package ospl-mode
+  :hook ((TeX-mode . ospl-mode)
+         (markdown-mode . ospl-mode)))
 
 (setq url-proxy-services
       '(("no_proxy" . "^\\(localhost\\|10\\.*\\|192\\.168.*\\)")
-        ("http" .  "10.30.12.34:8118")
-        ("https" . "10.30.12.34:8118")))
+        ("http" .  "10.118.24.8:7890")
+        ("https" . "10.118.24.8:7890")))
 
 ;; (setenv "http_proxy" "http://192.168.100.3:1080")
 
